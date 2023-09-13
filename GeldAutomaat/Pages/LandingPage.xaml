@@ -107,7 +107,25 @@
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
 
+                <Border Grid.Column="1" Grid.ColumnSpan="13" Grid.Row="5" BorderThickness="0,0,0,3">
+                    <Border.BorderBrush>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <LinearGradientBrush.RelativeTransform>
+                                <TransformGroup>
+                                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                    <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                    <RotateTransform Angle="90" CenterX="0.5" CenterY="0.5"/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </LinearGradientBrush.RelativeTransform>
+                            <GradientStop Color="Transparent" Offset="0.070"/>
+                            <GradientStop Color="White" Offset="0.070"/>
+                        </LinearGradientBrush>
+                    </Border.BorderBrush>
+                </Border>
+
                 <Border Grid.Column="4" Grid.ColumnSpan="9" Grid.Row="6" Grid.RowSpan="7" Style="{StaticResource CenterImage}">
+
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
@@ -130,10 +148,13 @@
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
 
-                        <Viewbox Grid.Column="1" Grid.ColumnSpan="7" >
-                            <TextBox  Text="Wij accepteren alle bankpassen" FontFamily=""></TextBox>
+                        <Viewbox Grid.Column="1" Grid.ColumnSpan="7" Grid.Row="1" Grid.RowSpan="2">
+                            <TextBlock  Text="Wij accepteren"></TextBlock>
                         </Viewbox>
-                        
+                        <Viewbox Grid.Column="1" Grid.ColumnSpan="7" Grid.Row="3" Grid.RowSpan="2">
+                            <TextBlock  Text="alle bankpassen" ></TextBlock>
+                        </Viewbox>
+
                         <Grid Grid.ColumnSpan="9" Grid.Row="5" Grid.RowSpan="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
@@ -153,6 +174,50 @@
 
                     </Grid>
                 </Border>
+
+                <Grid Grid.Row="15" Grid.RowSpan="2" Grid.Column="10" Grid.ColumnSpan="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Viewbox VerticalAlignment="Center" Grid.Column="0">
+                        <TextBlock Text="Camerabewaking"></TextBlock>
+                    </Viewbox>
+                    <Viewbox Grid.Column="1" Margin="10,0,0,0">
+                        <Path Stroke="Black" StrokeThickness="5">
+                            <Path.Data>
+                                <PathGeometry>
+                                    <PathGeometry.Figures>
+                                        <PathFigure StartPoint="100,100" IsClosed="True">
+                                            <PathFigure.Segments>
+                                                <LineSegment Point="85,100"></LineSegment>
+                                                <LineSegment Point="85,70"></LineSegment>
+                                                <LineSegment Point="100,70"></LineSegment>
+                                                <LineSegment Point="100,100"></LineSegment>
+                                                <!--<BezierSegment              
+                                                Point1="100,0"              
+                                                Point2="200,200"              
+                                                Point3="300,100"/>
+                                            <LineSegment Point="400,100" />
+                                            <ArcSegment
+                                                Size="50,50"
+                                                RotationAngle="45"
+                                                IsLargeArc="True"
+                                                SweepDirection="Clockwise"
+                                                Point="200,100"/>-->
+                                            </PathFigure.Segments>
+                                        </PathFigure >
+                                        <PathFigure StartPoint="85,85">
+                                            <PathFigure.Segments>
+                                                <LineSegment Point="50,85"></LineSegment>
+                                            </PathFigure.Segments>
+                                        </PathFigure>
+                                    </PathGeometry.Figures>
+                                </PathGeometry>
+                            </Path.Data>
+                        </Path>
+                    </Viewbox>
+                </Grid>
 
                 <Border Grid.Row="19" Grid.RowSpan="3" Grid.ColumnSpan="15" Style="{StaticResource BottomImage}">
                     <Grid>

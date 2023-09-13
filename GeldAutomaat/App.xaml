@@ -1,0 +1,28 @@
+﻿<Application x:Class="GeldAutomaat.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:GeldAutomaat"
+             StartupUri="/Pages/LandingPage.xaml">
+    <Application.Resources>
+
+        <Style x:Key="MainWindow" TargetType="{x:Type Page}">
+            <Setter Property="Background" Value="#FF232323"></Setter>
+        </Style>
+
+        <Style x:Key="MainCard" TargetType="{x:Type Border}">
+            <Setter Property="CornerRadius" Value="30"></Setter>
+            <Setter Property="Background" Value="#fac800"></Setter>
+        </Style>
+
+        <Style x:Key="BottomImage" TargetType="{x:Type Border}">
+            <Setter Property="CornerRadius" Value="0,0,30,30"></Setter>
+            <Setter Property="Background" Value="White"></Setter>
+        </Style>
+
+        <Style x:Key="CenterImage" TargetType="{x:Type Border}">
+            <Setter Property="CornerRadius" Value="0,0,15,15"></Setter>
+            <Setter Property="Background" Value="White"></Setter>
+        </Style>
+
+    </Application.Resources>
+</Application>

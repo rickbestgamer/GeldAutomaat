@@ -10,6 +10,23 @@
       ShowsNavigationUI="False"
       Style="{StaticResource MainWindow}">
 
+    <Page.Resources>
+        <Storyboard x:Key="MainCardAnimationDisapear">
+            <DoubleAnimation
+            Storyboard.TargetProperty="Opacity"
+            From="1"
+            To="0"
+            Duration="0:0:0.5" />
+        </Storyboard>
+        <Storyboard x:Key="MainCardAnimationApear">
+            <DoubleAnimation
+            Storyboard.TargetProperty="Opacity"
+            From="0"
+            To="1"
+            Duration="0:0:0.5" />
+        </Storyboard>
+    </Page.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -63,99 +80,80 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
-        <Border x:Name="MainCard" Grid.Column="3" Grid.ColumnSpan="15" Grid.RowSpan="22" Grid.Row="2" Style="{StaticResource MainCard}">
+        <Border Grid.Column="3" Grid.ColumnSpan="15" Grid.RowSpan="22" Grid.Row="2" Style="{StaticResource MainCard}">
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
+                <Grid x:Name="MainCard" Opacity="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
 
-                <Border Grid.Column="1" Grid.ColumnSpan="13" Grid.Row="5" BorderThickness="0,0,0,3">
-                    <Border.BorderBrush>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <LinearGradientBrush.RelativeTransform>
-                                <TransformGroup>
-                                    <ScaleTransform CenterY="0.5" CenterX="0.5"/>
-                                    <SkewTransform CenterX="0.5" CenterY="0.5"/>
-                                    <RotateTransform Angle="90" CenterX="0.5" CenterY="0.5"/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </LinearGradientBrush.RelativeTransform>
-                            <GradientStop Color="Transparent" Offset="0.070"/>
-                            <GradientStop Color="White" Offset="0.070"/>
-                        </LinearGradientBrush>
-                    </Border.BorderBrush>
-                </Border>
-
-                <Border Grid.Column="4" Grid.ColumnSpan="9" Grid.Row="6" Grid.RowSpan="7" Style="{StaticResource CenterImage}">
-
-                    <Grid>
+                    <Grid Grid.Column="6" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="4*"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                            <RowDefinition></RowDefinition>
-                        </Grid.RowDefinitions>
+                        <Image Source="/Assets/Geldmaat_Logo_Zwart.png" Grid.Column="1"></Image>
+                    </Grid>
 
-                        <Viewbox Grid.Column="1" Grid.ColumnSpan="7" Grid.Row="1" Grid.RowSpan="2">
-                            <TextBlock  Text="Wij accepteren"></TextBlock>
-                        </Viewbox>
-                        <Viewbox Grid.Column="1" Grid.ColumnSpan="7" Grid.Row="3" Grid.RowSpan="2">
-                            <TextBlock  Text="alle bankpassen" ></TextBlock>
-                        </Viewbox>
+                    <Border Grid.Column="1" Grid.ColumnSpan="13" Grid.Row="5" BorderThickness="0,0,0,3">
+                        <Border.BorderBrush>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <LinearGradientBrush.RelativeTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform CenterY="0.5" CenterX="0.5"/>
+                                        <SkewTransform CenterX="0.5" CenterY="0.5"/>
+                                        <RotateTransform Angle="90" CenterX="0.5" CenterY="0.5"/>
+                                        <TranslateTransform/>
+                                    </TransformGroup>
+                                </LinearGradientBrush.RelativeTransform>
+                                <GradientStop Color="Transparent" Offset="0.060"/>
+                                <GradientStop Color="White" Offset="0.060"/>
+                            </LinearGradientBrush>
+                        </Border.BorderBrush>
+                    </Border>
 
-                        <Grid Grid.ColumnSpan="9" Grid.Row="5" Grid.RowSpan="2">
+                    <Border Grid.Column="4" Grid.ColumnSpan="9" Grid.Row="6" Grid.RowSpan="7" Style="{StaticResource CenterImage}">
+
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
@@ -164,37 +162,66 @@
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
                                 <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
                             </Grid.ColumnDefinitions>
-                            <Image Grid.Column="1" Source="/Assets/mastercard.png" Margin="5,10,5,10"></Image>
-                            <Image Grid.Column="2" Source="/Assets/meastro.png" Margin="5,10,5,10"></Image>
-                            <Image Grid.Column="3" Source="/Assets/mastercard-cirrus-logo-8.png" VerticalAlignment="Center" Margin="5,10,5,10"/>
-                            <Image Grid.Column="4" Source="/Assets/580_visa.jpg" Margin="5,10,5,10"></Image>
-                            <Image Grid.Column="5" Source="/Assets/vpay.png" Margin="5,10,5,10"></Image>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Viewbox Grid.Column="1" Grid.ColumnSpan="7" Grid.Row="1" Grid.RowSpan="2">
+                                <TextBlock  Text="Wij accepteren" FontFamily="CheGuevara Barry Brown"></TextBlock>
+                            </Viewbox>
+                            <Viewbox Grid.Column="1" Grid.ColumnSpan="7" Grid.Row="3" Grid.RowSpan="2">
+                                <TextBlock  Text="alle bankpassen" FontFamily="CheGuevara Barry Brown" ></TextBlock>
+                            </Viewbox>
+
+                            <Grid Grid.ColumnSpan="9" Grid.Row="5" Grid.RowSpan="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.Column="1" Source="/Assets/mastercard.png" Margin="5,10,5,10"></Image>
+                                <Image Grid.Column="2" Source="/Assets/meastro.png" Margin="5,10,5,10"></Image>
+                                <Image Grid.Column="3" Source="/Assets/mastercard-cirrus-logo-8.png" VerticalAlignment="Center" Margin="5,10,5,10"/>
+                                <Image Grid.Column="4" Source="/Assets/580_visa.jpg" Margin="5,10,5,10"></Image>
+                                <Image Grid.Column="5" Source="/Assets/vpay.png" Margin="5,10,5,10"></Image>
+                            </Grid>
+
                         </Grid>
+                    </Border>
 
-                    </Grid>
-                </Border>
-
-                <Grid Grid.Row="15" Grid.RowSpan="2" Grid.Column="10" Grid.ColumnSpan="3">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition></ColumnDefinition>
-                        <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <Viewbox VerticalAlignment="Center" Grid.Column="0">
-                        <TextBlock Text="Camerabewaking"></TextBlock>
-                    </Viewbox>
-                    <Viewbox Grid.Column="1" Margin="10,0,0,0">
-                        <Path Stroke="Black" StrokeThickness="5">
-                            <Path.Data>
-                                <PathGeometry>
-                                    <PathGeometry.Figures>
-                                        <PathFigure StartPoint="100,100" IsClosed="True">
-                                            <PathFigure.Segments>
-                                                <LineSegment Point="85,100"></LineSegment>
-                                                <LineSegment Point="85,70"></LineSegment>
-                                                <LineSegment Point="100,70"></LineSegment>
-                                                <LineSegment Point="100,100"></LineSegment>
-                                                <!--<BezierSegment              
+                    <Grid Grid.Row="15" Grid.RowSpan="2" Grid.Column="10" Grid.ColumnSpan="3">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Viewbox VerticalAlignment="Center" Grid.Column="0">
+                            <TextBlock Text="Camerabewaking" FontFamily="CheGuevara Barry Brown"></TextBlock>
+                        </Viewbox>
+                        <Viewbox Grid.Column="1" Margin="10,0,0,0">
+                            <Path Stroke="Black" StrokeThickness="5">
+                                <Path.Data>
+                                    <PathGeometry>
+                                        <PathGeometry.Figures>
+                                            <PathFigure StartPoint="100,100" IsClosed="True">
+                                                <PathFigure.Segments>
+                                                    <LineSegment Point="85,100"></LineSegment>
+                                                    <LineSegment Point="85,70"></LineSegment>
+                                                    <LineSegment Point="100,70"></LineSegment>
+                                                    <LineSegment Point="100,100"></LineSegment>
+                                                    <!--<BezierSegment              
                                                 Point1="100,0"              
                                                 Point2="200,200"              
                                                 Point3="300,100"/>
@@ -205,45 +232,232 @@
                                                 IsLargeArc="True"
                                                 SweepDirection="Clockwise"
                                                 Point="200,100"/>-->
-                                            </PathFigure.Segments>
-                                        </PathFigure >
-                                        <PathFigure StartPoint="85,85">
-                                            <PathFigure.Segments>
-                                                <LineSegment Point="50,85"></LineSegment>
-                                            </PathFigure.Segments>
-                                        </PathFigure>
-                                    </PathGeometry.Figures>
-                                </PathGeometry>
-                            </Path.Data>
-                        </Path>
-                    </Viewbox>
-                </Grid>
+                                                </PathFigure.Segments>
+                                            </PathFigure >
+                                            <PathFigure StartPoint="85,85">
+                                                <PathFigure.Segments>
+                                                    <LineSegment Point="50,85"></LineSegment>
+                                                </PathFigure.Segments>
+                                            </PathFigure>
+                                        </PathGeometry.Figures>
+                                    </PathGeometry>
+                                </Path.Data>
+                            </Path>
+                        </Viewbox>
+                    </Grid>
 
-                <Border Grid.Row="19" Grid.RowSpan="3" Grid.ColumnSpan="15" Style="{StaticResource BottomImage}">
-                    <Grid>
+                    <Border Grid.Row="19" Grid.RowSpan="3" Grid.ColumnSpan="15" Style="{StaticResource BottomImage}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Image Source="/Assets/Logos.png" Grid.Column="2" Grid.ColumnSpan="11"></Image>
+                        </Grid>
+                    </Border>
+
+                </Grid>
+                <Grid x:Name="WelcomeCard" Opacity="1">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid Grid.Column="6" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="4*"></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <Image Source="/Assets/Logos.png" Grid.Column="2" Grid.ColumnSpan="11"></Image>
+                        <Image Source="/Assets/Geldmaat_Logo_Zwart.png" Grid.Column="1"></Image>
                     </Grid>
-                </Border>
-
+                    <Border Grid.Column="2" Grid.ColumnSpan="11" Grid.Row="3" BorderThickness="0,0,0,5" BorderBrush="White"></Border>
+                    <Image Grid.Column="4" Grid.ColumnSpan="7" Grid.Row="7" Grid.RowSpan="13" Source="/Assets/logo.png"></Image>
+                </Grid>
             </Grid>
         </Border>
+
+        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="20" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Rectangle Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Fill="White" Margin="2,0,0,0"></Rectangle>
+            <Ellipse Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="White"></Ellipse>
+            <Ellipse Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="Black" Margin="5" MouseDown="Ellipse_MouseDown" MouseEnter="Ellipse_MouseEnter" MouseLeave="Ellipse_MouseLeave"></Ellipse>
+        </Grid>
+        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="16" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Rectangle Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Fill="White"></Rectangle>
+            <Ellipse Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="White"></Ellipse>
+            <Ellipse Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="Black" Margin="5" MouseDown="Ellipse_MouseDown" MouseEnter="Ellipse_MouseEnter" MouseLeave="Ellipse_MouseLeave"></Ellipse>
+        </Grid>
+        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="12" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Rectangle Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Fill="White"></Rectangle>
+            <Ellipse Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="White"></Ellipse>
+            <Ellipse Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="Black" Margin="5" MouseDown="Ellipse_MouseDown" MouseEnter="Ellipse_MouseEnter" MouseLeave="Ellipse_MouseLeave"></Ellipse>
+        </Grid>
+        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="8" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Rectangle Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="1" Fill="White"></Rectangle>
+            <Ellipse Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="White"></Ellipse>
+            <Ellipse Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="Black" Margin="5" MouseDown="Ellipse_MouseDown" MouseEnter="Ellipse_MouseEnter" MouseLeave="Ellipse_MouseLeave"></Ellipse>
+        </Grid>
+        <Grid Grid.Column="18" Grid.ColumnSpan="2" Grid.Row="20" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Rectangle Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Fill="White"></Rectangle>
+            <Ellipse Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="White"></Ellipse>
+            <Ellipse Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="Black" Margin="5" MouseDown="Ellipse_MouseDown" MouseEnter="Ellipse_MouseEnter" MouseLeave="Ellipse_MouseLeave"></Ellipse>
+        </Grid>
+
+        <Grid Grid.Column="18" Grid.ColumnSpan="2" Grid.Row="16" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Rectangle Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Fill="White"></Rectangle>
+            <Ellipse Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="White"></Ellipse>
+            <Ellipse Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="Black" Margin="5" MouseDown="Ellipse_MouseDown" MouseEnter="Ellipse_MouseEnter" MouseLeave="Ellipse_MouseLeave"></Ellipse>
+        </Grid>
+
+        <Grid Grid.Column="18" Grid.ColumnSpan="2" Grid.Row="12" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Rectangle Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Fill="White"></Rectangle>
+            <Ellipse Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="White"></Ellipse>
+            <Ellipse Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="Black" Margin="5" MouseDown="Ellipse_MouseDown" MouseEnter="Ellipse_MouseEnter" MouseLeave="Ellipse_MouseLeave"></Ellipse>
+        </Grid>
+
+        <Grid Grid.Column="18" Grid.ColumnSpan="2" Grid.Row="8" Grid.RowSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Rectangle Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" Fill="White"></Rectangle>
+            <Ellipse Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="White"></Ellipse>
+            <Ellipse Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="Black" Margin="5" MouseDown="Ellipse_MouseDown" MouseEnter="Ellipse_MouseEnter" MouseLeave="Ellipse_MouseLeave"></Ellipse>
+        </Grid>
 
     </Grid>
 </Page>

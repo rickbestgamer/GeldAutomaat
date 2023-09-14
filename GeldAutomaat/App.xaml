@@ -11,7 +11,7 @@
 
         <Style x:Key="MainCard" TargetType="{x:Type Border}">
             <Setter Property="CornerRadius" Value="30"></Setter>
-            <Setter Property="Background" Value="#fac800"></Setter>
+            <Setter Property="Background" Value="#ffcc00"></Setter>
         </Style>
 
         <Style x:Key="BottomImage" TargetType="{x:Type Border}">

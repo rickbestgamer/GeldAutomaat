@@ -25,19 +25,32 @@ namespace GeldAutomaat.Pages
         public LandingPage()
         {
             InitializeComponent();
+            MainCard.Opacity = 1;
+            MainCard.Visibility = Visibility.Visible;
+            WelcomeCard.Opacity = 0;
+            WelcomeCard.Visibility = Visibility.Visible;
+            LoadLogo.Opacity = 1;
+            LoadLogo.Visibility = Visibility.Visible;
         }
 
         private async void Ellipse_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (MainCard.Opacity != 0)
+            if (MainCard.Opacity == 1)
             {
-                Storyboard storyboard = (Storyboard)FindResource("MainCardAnimationDisapear");
-                Storyboard.SetTarget(storyboard, MainCard);
-                storyboard.Begin();
+                Storyboard MainCardAnimationDisapear = (Storyboard)FindResource("MainCardAnimationDisapear");
+                Storyboard MainCardAnimationApear = (Storyboard)FindResource("MainCardAnimationApear");
+
+                Storyboard.SetTarget(MainCardAnimationDisapear, MainCard);
+                MainCardAnimationDisapear.Begin();
                 await Task.Delay(500);
-                storyboard = (Storyboard)FindResource("MainCardAnimationApear");
-                Storyboard.SetTarget(storyboard, WelcomeCard);
-                storyboard.Begin();
+                Storyboard.SetTarget(MainCardAnimationApear, WelcomeCard);
+                MainCardAnimationApear.Begin();
+                await Task.Delay(500);
+                Storyboard.SetTarget(MainCardAnimationDisapear, LoadLogo);
+                MainCardAnimationDisapear.Begin();
+                await Task.Delay(500);
+                LoginPage loginPage = new LoginPage();
+                NavigationService.Navigate(loginPage);
             }
         }
 

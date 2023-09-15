@@ -24,5 +24,35 @@
             <Setter Property="Background" Value="White"></Setter>
         </Style>
 
+        <Style x:Key="LeftButton" TargetType="{x:Type Border}">
+            <Setter Property="Background" Value="white"></Setter>
+            <Setter Property="CornerRadius" Value="10,10,0,0"></Setter>
+            <Setter Property="BorderThickness" Value="0,0,0,1"></Setter>
+            <Setter Property="BorderBrush" Value="Black"></Setter>
+            <Setter Property="TextBlock.FontFamily" Value="MADE Tommy Soft"></Setter>
+            <Setter Property="TextBlock.FontWeight" Value="Bold"></Setter>
+        </Style>
+
+        <Style x:Key="LeftButtonArrow" TargetType="{x:Type Border}">
+            <Setter Property="Background" Value="Black"></Setter>
+            <Setter Property="CornerRadius" Value="10,0,0,0"></Setter>
+            <Setter Property="TextBlock.Foreground" Value="White"></Setter>
+        </Style>
+
+        <Style x:Key="RightButton" TargetType="{x:Type Border}">
+            <Setter Property="Background" Value="white"></Setter>
+            <Setter Property="CornerRadius" Value="10,10,0,0"></Setter>
+            <Setter Property="BorderThickness" Value="0,0,0,1"></Setter>
+            <Setter Property="BorderBrush" Value="Black"></Setter>
+            <Setter Property="TextBlock.FontFamily" Value="MADE Tommy Soft"></Setter>
+            <Setter Property="TextBlock.FontWeight" Value="Bold"></Setter>
+        </Style>
+
+        <Style x:Key="RightButtonArrow" TargetType="{x:Type Border}">
+            <Setter Property="Background" Value="Black"></Setter>
+            <Setter Property="CornerRadius" Value="0,10,0,0"></Setter>
+            <Setter Property="TextBlock.Foreground" Value="White"></Setter>
+        </Style>
+
     </Application.Resources>
 </Application>

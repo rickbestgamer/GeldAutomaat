@@ -13,8 +13,7 @@ namespace GeldAutomaat.Classes
         public MySqlConnection connection;
         readonly string myConnectionString = "server=localhost;uid=root;" +
                 "pwd=;database=geldautomaat";
-        public List<Transactions> transactions = new List<Transactions>();
-        public DBData()
+        public static void GetConnection()
         {
             try
             {
@@ -27,10 +26,31 @@ namespace GeldAutomaat.Classes
             }
         }
 
-        public class Transactions
+        public void CheckUserLogin()
         {
-            public Transactions() { }
+            if (connection == null) return;
+        }
+    }
 
-            public int index { get; set; }
+    public class User
+    {
+        public static User UserD = new User();
+        public User() { }
+
+        private static int id;
+        private static string name;
+        private static bool isAdmin;
+        public int Id { get { return id; } set { id = value; } }
+        public string Name { get { return name; } set { name = value; } }
+        public bool IsAdmin { get { return isAdmin; } set { isAdmin = value; } }
+    }
+
+    public class Transactions
+    {
+        public static List<Transactions> transactions = new List<Transactions>();
+        public Transactions() { }
+
+        public int Index { get; set; }
+        public int Amount { get; set; }
     }
 }

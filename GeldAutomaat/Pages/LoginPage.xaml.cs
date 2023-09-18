@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GeldAutomaat.Classes;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -45,6 +46,7 @@ namespace GeldAutomaat.Pages
             Storyboard.SetTarget(MainCardAnimationApear, RightLoginButton);
             ((Ellipse)RightLoginButton.Tag).MouseDown += Login;
             MainCardAnimationApear.Begin();
+            User.UserD.IsAdmin = true;
         }
 
         private void Ellipse_MouseEnter(object sender, MouseEventArgs e)
@@ -59,20 +61,21 @@ namespace GeldAutomaat.Pages
 
         private async void Login(object sender, RoutedEventArgs e)
         {
-            if (TxBlRek.Text != "" && TxBlPin.Text != "")
-            {
-                Storyboard.SetTarget(MainCardAnimationDisapear, LoginGrid);
-                MainCardAnimationDisapear.Begin();
-                Storyboard.SetTarget(MainCardAnimationDisapear, LeftLoginButton);
-                ((Ellipse)LeftLoginButton.Tag).MouseDown += Login;
-                MainCardAnimationDisapear.Begin();
-                Storyboard.SetTarget(MainCardAnimationDisapear, RightLoginButton);
-                ((Ellipse)RightLoginButton.Tag).MouseDown += Login;
-                MainCardAnimationDisapear.Begin();
-                await Task.Delay(500);
-                ChoicePage choicePage = new ChoicePage();
-                NavigationService.Navigate(choicePage);
-            }
+            DBData.GetConnection();
+            //if (TxBlRek.Text != "" && TxBlPin.Text != "")
+            //{
+            //    Storyboard.SetTarget(MainCardAnimationDisapear, LoginGrid);
+            //    MainCardAnimationDisapear.Begin();
+            //    Storyboard.SetTarget(MainCardAnimationDisapear, LeftLoginButton);
+            //    ((Ellipse)LeftLoginButton.Tag).MouseDown += Login;
+            //    MainCardAnimationDisapear.Begin();
+            //    Storyboard.SetTarget(MainCardAnimationDisapear, RightLoginButton);
+            //    ((Ellipse)RightLoginButton.Tag).MouseDown += Login;
+            //    MainCardAnimationDisapear.Begin();
+            //    await Task.Delay(500);
+            //    ChoicePage choicePage = new ChoicePage();
+            //    NavigationService.Navigate(choicePage);
+            //}
         }
     }
 }

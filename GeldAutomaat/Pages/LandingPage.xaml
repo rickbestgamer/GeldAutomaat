@@ -176,7 +176,7 @@
                             </Grid.RowDefinitions>
 
                             <Viewbox Grid.Column="1" Grid.ColumnSpan="7" Grid.Row="1" Grid.RowSpan="2">
-                                <TextBlock  Text="Wij accepteren" FontFamily="MADE Tommy Soft" FontWeight="Light"/>
+                                <TextBlock  Text="Wij accepteren" FontFamily="MADE Tommy Soft"/>
                             </Viewbox>
                             <Viewbox Grid.Column="1" Grid.ColumnSpan="7" Grid.Row="3" Grid.RowSpan="2">
                                 <TextBlock  Text="alle bankpassen" FontFamily="MADE Tommy Soft" ></TextBlock>
@@ -329,7 +329,7 @@
             </Grid>
         </Border>
 
-        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="20" Grid.RowSpan="2">
+        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="21" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
@@ -345,7 +345,7 @@
             <Ellipse Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="White"></Ellipse>
             <Ellipse x:Name="BtnL4" Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="Black" Margin="5" MouseDown="Ellipse_MouseDown" MouseEnter="Ellipse_MouseEnter" MouseLeave="Ellipse_MouseLeave"></Ellipse>
         </Grid>
-        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="16" Grid.RowSpan="2">
+        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="17" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
@@ -361,7 +361,7 @@
             <Ellipse Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="White"></Ellipse>
             <Ellipse x:Name="BtnL3" Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="Black" Margin="5" MouseDown="Ellipse_MouseDown" MouseEnter="Ellipse_MouseEnter" MouseLeave="Ellipse_MouseLeave"></Ellipse>
         </Grid>
-        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="12" Grid.RowSpan="2">
+        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="13" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
@@ -377,7 +377,7 @@
             <Ellipse Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="White"></Ellipse>
             <Ellipse x:Name="BtnL2" Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="Black" Margin="5" MouseDown="Ellipse_MouseDown" MouseEnter="Ellipse_MouseEnter" MouseLeave="Ellipse_MouseLeave"></Ellipse>
         </Grid>
-        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="8" Grid.RowSpan="2">
+        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="9" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
@@ -393,7 +393,7 @@
             <Ellipse Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="White"></Ellipse>
             <Ellipse x:Name="BtnL1" Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="Black" Margin="5" MouseDown="Ellipse_MouseDown" MouseEnter="Ellipse_MouseEnter" MouseLeave="Ellipse_MouseLeave"></Ellipse>
         </Grid>
-        <Grid Grid.Column="18" Grid.ColumnSpan="2" Grid.Row="20" Grid.RowSpan="2">
+        <Grid Grid.Column="18" Grid.ColumnSpan="2" Grid.Row="21" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
@@ -410,7 +410,7 @@
             <Ellipse x:Name="BtnR4" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="Black" Margin="5" MouseDown="Ellipse_MouseDown" MouseEnter="Ellipse_MouseEnter" MouseLeave="Ellipse_MouseLeave"></Ellipse>
         </Grid>
 
-        <Grid Grid.Column="18" Grid.ColumnSpan="2" Grid.Row="16" Grid.RowSpan="2">
+        <Grid Grid.Column="18" Grid.ColumnSpan="2" Grid.Row="17" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
@@ -427,7 +427,7 @@
             <Ellipse x:Name="BtnR3" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="Black" Margin="5" MouseDown="Ellipse_MouseDown" MouseEnter="Ellipse_MouseEnter" MouseLeave="Ellipse_MouseLeave"></Ellipse>
         </Grid>
 
-        <Grid Grid.Column="18" Grid.ColumnSpan="2" Grid.Row="12" Grid.RowSpan="2">
+        <Grid Grid.Column="18" Grid.ColumnSpan="2" Grid.Row="13" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
@@ -444,7 +444,7 @@
             <Ellipse x:Name="BtnR2" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="Black" Margin="5" MouseDown="Ellipse_MouseDown" MouseEnter="Ellipse_MouseEnter" MouseLeave="Ellipse_MouseLeave"></Ellipse>
         </Grid>
 
-        <Grid Grid.Column="18" Grid.ColumnSpan="2" Grid.Row="8" Grid.RowSpan="2">
+        <Grid Grid.Column="18" Grid.ColumnSpan="2" Grid.Row="9" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>

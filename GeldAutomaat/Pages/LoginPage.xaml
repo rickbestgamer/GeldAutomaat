@@ -168,7 +168,7 @@
                     </Grid>
                 </Grid>
 
-                <Border x:Name="LeftLoginButton" Grid.Column="2" Grid.ColumnSpan="5" Grid.Row="18" Grid.RowSpan="2" Style="{DynamicResource LeftButton}">
+                <Border x:Name="LeftLoginButton" Grid.Column="2" Grid.ColumnSpan="5" Grid.Row="19" Grid.RowSpan="2" Style="{DynamicResource LeftButton}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -197,7 +197,7 @@
                     </Grid>
                 </Border>
 
-                <Border x:Name="RightLoginButton" Grid.Column="8" Grid.ColumnSpan="5" Grid.Row="18" Grid.RowSpan="2" Style="{DynamicResource RightButton}">
+                <Border x:Name="RightLoginButton" Grid.Column="8" Grid.ColumnSpan="5" Grid.Row="19" Grid.RowSpan="2" Style="{DynamicResource RightButton}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="5*"></ColumnDefinition>
@@ -228,7 +228,7 @@
             </Grid>
         </Border>
 
-        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="20" Grid.RowSpan="2">
+        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="21" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
@@ -244,7 +244,7 @@
             <Ellipse Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="White"></Ellipse>
             <Ellipse x:Name="BtnL4" Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="Black" Margin="5" MouseEnter="Ellipse_MouseEnter" MouseLeave="Ellipse_MouseLeave"></Ellipse>
         </Grid>
-        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="16" Grid.RowSpan="2">
+        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="17" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
@@ -260,7 +260,7 @@
             <Ellipse Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="White"></Ellipse>
             <Ellipse x:Name="BtnL3" Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="Black" Margin="5"></Ellipse>
         </Grid>
-        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="12" Grid.RowSpan="2">
+        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="13" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
@@ -278,7 +278,7 @@
         </Grid>
 
 
-        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="8" Grid.RowSpan="2">
+        <Grid Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="9" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
@@ -294,7 +294,7 @@
             <Ellipse Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="White"></Ellipse>
             <Ellipse x:Name="BtnL1" Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="Black" Margin="5"></Ellipse>
         </Grid>
-        <Grid Grid.Column="18" Grid.ColumnSpan="2" Grid.Row="20" Grid.RowSpan="2">
+        <Grid Grid.Column="18" Grid.ColumnSpan="2" Grid.Row="21" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
@@ -311,7 +311,7 @@
             <Ellipse x:Name="BtnR4" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="Black" Margin="5" MouseEnter="Ellipse_MouseEnter" MouseLeave="Ellipse_MouseLeave"></Ellipse>
         </Grid>
 
-        <Grid Grid.Column="18" Grid.ColumnSpan="2" Grid.Row="16" Grid.RowSpan="2">
+        <Grid Grid.Column="18" Grid.ColumnSpan="2" Grid.Row="17" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
@@ -328,7 +328,7 @@
             <Ellipse x:Name="BtnR3" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="Black" Margin="5"></Ellipse>
         </Grid>
 
-        <Grid Grid.Column="18" Grid.ColumnSpan="2" Grid.Row="12" Grid.RowSpan="2">
+        <Grid Grid.Column="18" Grid.ColumnSpan="2" Grid.Row="13" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>
@@ -345,7 +345,7 @@
             <Ellipse x:Name="BtnR2" Grid.Column="2" Grid.ColumnSpan="2" Grid.RowSpan="3" Fill="Black" Margin="5"></Ellipse>
         </Grid>
 
-        <Grid Grid.Column="18" Grid.ColumnSpan="2" Grid.Row="8" Grid.RowSpan="2">
+        <Grid Grid.Column="18" Grid.ColumnSpan="2" Grid.Row="9" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition></RowDefinition>
                 <RowDefinition Height="5*"></RowDefinition>

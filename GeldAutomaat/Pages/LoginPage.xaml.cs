@@ -46,7 +46,7 @@ namespace GeldAutomaat.Pages
             Storyboard.SetTarget(MainCardAnimationApear, RightLoginButton);
             ((Ellipse)RightLoginButton.Tag).MouseDown += Login;
             MainCardAnimationApear.Begin();
-            User.UserD.IsAdmin = true;
+            DBData.GetConnection();
         }
 
         private void Ellipse_MouseEnter(object sender, MouseEventArgs e)
@@ -59,9 +59,9 @@ namespace GeldAutomaat.Pages
             ((Ellipse)sender).Fill = Brushes.Black;
         }
 
-        private async void Login(object sender, RoutedEventArgs e)
+        private void Login(object sender, RoutedEventArgs e)
         {
-            DBData.GetConnection();
+            DBData.CheckUserLogin(TxBlRek.Text, TxBlPin.Text);
             //if (TxBlRek.Text != "" && TxBlPin.Text != "")
             //{
             //    Storyboard.SetTarget(MainCardAnimationDisapear, LoginGrid);

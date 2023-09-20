@@ -18,22 +18,49 @@ using System.Windows.Shapes;
 namespace GeldAutomaat.Pages
 {
     /// <summary>
-    /// Interaction logic for ChoicePage.xaml
+    /// Interaction logic for AdminPage.xaml
     /// </summary>
-    public partial class ChoicePage : Page
+    public partial class AdminPage : Page
     {
         Storyboard MainCardAnimationDisapear;
         Storyboard MainCardAnimationApear;
-        public ChoicePage()
+        public AdminPage()
         {
             InitializeComponent();
-            ChoiceCard.Opacity = 0;
+
+            RequestButton.Tag = BtnL1;
+            RekOverviewButton.Tag = BtnL2;
+            QuitButton.Tag = BtnL4;
+            WithdrawlButton.Tag = BtnR1;
+            ChangePinButton.Tag = BtnR4;
+
+            foreach (var item in ChoiceCard.Children)
+            {
+                if (item is Border)
+                {
+                    if (((Border)item).Tag is Ellipse)
+                    {
+                        ((Ellipse)((Border)item).Tag).MouseEnter += Ellipse_MouseEnter;
+                        ((Ellipse)((Border)item).Tag).MouseLeave += Ellipse_MouseLeave;
+                    }
+                }
+            }
+
+            BtnL2.MouseDown += RekOverview;
+
             HelloText.Text = "Hello " + User.UserD.Name;
+            ChoiceCard.Opacity = 0;
             ChoiceCard.Visibility = Visibility.Visible;
             MainCardAnimationDisapear = (Storyboard)FindResource("MainCardAnimationDisapear");
             MainCardAnimationApear = (Storyboard)FindResource("MainCardAnimationApear");
             Storyboard.SetTarget(MainCardAnimationApear, ChoiceCard);
             MainCardAnimationApear.Begin();
+        }
+
+        private void RekOverview(object sender, MouseButtonEventArgs e)
+        {
+            UserOverview userOverview = new UserOverview();
+            NavigationService.Navigate(userOverview);
         }
 
         private void Ellipse_MouseEnter(object sender, MouseEventArgs e)

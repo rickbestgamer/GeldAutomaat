@@ -59,23 +59,26 @@ namespace GeldAutomaat.Pages
             ((Ellipse)sender).Fill = Brushes.Black;
         }
 
-        private void Login(object sender, RoutedEventArgs e)
+        private async void Login(object sender, RoutedEventArgs e)
         {
-            DBData.CheckUserLogin(TxBlRek.Text, TxBlPin.Text);
-            //if (TxBlRek.Text != "" && TxBlPin.Text != "")
-            //{
-            //    Storyboard.SetTarget(MainCardAnimationDisapear, LoginGrid);
-            //    MainCardAnimationDisapear.Begin();
-            //    Storyboard.SetTarget(MainCardAnimationDisapear, LeftLoginButton);
-            //    ((Ellipse)LeftLoginButton.Tag).MouseDown += Login;
-            //    MainCardAnimationDisapear.Begin();
-            //    Storyboard.SetTarget(MainCardAnimationDisapear, RightLoginButton);
-            //    ((Ellipse)RightLoginButton.Tag).MouseDown += Login;
-            //    MainCardAnimationDisapear.Begin();
-            //    await Task.Delay(500);
-            //    ChoicePage choicePage = new ChoicePage();
-            //    NavigationService.Navigate(choicePage);
-            //}
+            if (!DBData.CheckUserLogin(TxBlRek.Text, TxBlPin.Text)) return;
+            Storyboard.SetTarget(MainCardAnimationDisapear, LoginGrid);
+            MainCardAnimationDisapear.Begin();
+            Storyboard.SetTarget(MainCardAnimationDisapear, LeftLoginButton);
+            MainCardAnimationDisapear.Begin();
+            Storyboard.SetTarget(MainCardAnimationDisapear, RightLoginButton);
+            MainCardAnimationDisapear.Begin();
+            await Task.Delay(500);
+            ChoicePage choicePage = new ChoicePage();
+            if (User.UserD.Role == 0) { NavigationService.Navigate(choicePage); return; }
+            AdminPage adminPage = new AdminPage();
+            if (User.UserD.Role == 1) { NavigationService.Navigate(adminPage); return; }
+            
+        }
+
+        private void CheckEnter(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) Login(sender, e);
         }
     }
 }

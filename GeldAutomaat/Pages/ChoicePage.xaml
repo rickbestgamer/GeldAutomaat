@@ -123,6 +123,9 @@
                     <RowDefinition></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
+                <Viewbox Grid.Row="1" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="5">
+                    <TextBlock x:Name="HelloText" Text="Hello" FontFamily="MADE Tommy Soft" FontWeight="Bold"></TextBlock>
+                </Viewbox>
                 <Border Grid.Column="2" Grid.ColumnSpan="11" Grid.Row="2" BorderThickness="0,0,0,5" BorderBrush="White"></Border>
                 <Viewbox Grid.Row="4" Grid.RowSpan="2" Grid.Column="5" Grid.ColumnSpan="5">
                     <TextBlock Text="Maak uw keuze" FontFamily="MADE Tommy Soft" FontWeight="Bold"></TextBlock>

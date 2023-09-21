@@ -28,12 +28,41 @@ namespace GeldAutomaat.Pages
         {
             InitializeComponent();
             ChoiceCard.Opacity = 0;
-            HelloText.Text = "Hello " + User.UserD.Name;
+            HelloText.Text = "Hallo " + User.UserD.Name;
             ChoiceCard.Visibility = Visibility.Visible;
             MainCardAnimationDisapear = (Storyboard)FindResource("MainCardAnimationDisapear");
             MainCardAnimationApear = (Storyboard)FindResource("MainCardAnimationApear");
             Storyboard.SetTarget(MainCardAnimationApear, ChoiceCard);
             MainCardAnimationApear.Begin();
+
+            BtnL1.MouseDown += Balance;
+            BtnL4.MouseDown += PrevPage;
+            BtnR1.MouseDown += Withdawl;
+            BtnR4.MouseDown += ChangePin;
+        }
+
+        private void Withdawl(object sender, MouseButtonEventArgs e)
+        {
+            WithdrawlPage withdrawlPage = new WithdrawlPage();
+            NavigationService.Navigate(withdrawlPage);
+        }
+
+        private void ChangePin(object sender, MouseButtonEventArgs e)
+        {
+            ChangePinPage changePinPage = new ChangePinPage();
+            NavigationService.Navigate(changePinPage);
+        }
+
+        private void PrevPage(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.GoBack();
+            NavigationService.GoBack();
+        }
+
+        private void Balance(object sender, MouseButtonEventArgs e)
+        {
+            BalancePage balancePage = new BalancePage();
+            NavigationService.Navigate(balancePage);
         }
 
         private void Ellipse_MouseEnter(object sender, MouseEventArgs e)

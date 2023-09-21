@@ -28,7 +28,7 @@ namespace GeldAutomaat.Pages
         {
             InitializeComponent();
 
-            RequestButton.Tag = BtnL1;
+            BalanceButton.Tag = BtnL1;
             RekOverviewButton.Tag = BtnL2;
             QuitButton.Tag = BtnL4;
             WithdrawlButton.Tag = BtnR1;
@@ -46,16 +46,37 @@ namespace GeldAutomaat.Pages
                 }
             }
 
+            BtnL1.MouseDown += Balance;
             BtnL2.MouseDown += RekOverview;
-            BtnL4.MouseDown += PrevPage; ;
+            BtnL4.MouseDown += PrevPage;
+            BtnR1.MouseDown += Withdawl; ;
+            BtnR4.MouseDown += ChangePin;
 
-            HelloText.Text = "Hello " + User.UserD.Name;
+            HelloText.Text = "Hallo " + User.UserD.Name;
             ChoiceCard.Opacity = 0;
             ChoiceCard.Visibility = Visibility.Visible;
             MainCardAnimationDisapear = (Storyboard)FindResource("MainCardAnimationDisapear");
             MainCardAnimationApear = (Storyboard)FindResource("MainCardAnimationApear");
             Storyboard.SetTarget(MainCardAnimationApear, ChoiceCard);
             MainCardAnimationApear.Begin();
+        }
+
+        private void Withdawl(object sender, MouseButtonEventArgs e)
+        {
+            WithdrawlPage withdrawlPage = new WithdrawlPage();
+            NavigationService.Navigate(withdrawlPage);
+        }
+
+        private void ChangePin(object sender, MouseButtonEventArgs e)
+        {
+            ChangePinPage changePinPage = new ChangePinPage();
+            NavigationService.Navigate(changePinPage);
+        }
+
+        private void Balance(object sender, MouseButtonEventArgs e)
+        {
+            BalancePage balancePage = new BalancePage();
+            NavigationService.Navigate(balancePage);
         }
 
         private void PrevPage(object sender, MouseButtonEventArgs e)

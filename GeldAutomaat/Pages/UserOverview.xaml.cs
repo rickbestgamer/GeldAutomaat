@@ -32,7 +32,7 @@ namespace GeldAutomaat.Pages
             AddUserButton.Tag = BtnR4;
             QuitButton.Tag = BtnL4;
             BtnR4.MouseDown += AddUser;
-            BtnL4.MouseDown += Prevpage; ;
+            BtnL4.MouseDown += Prevpage;
 
             foreach (var item in ChoiceCard.Children)
             {

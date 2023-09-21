@@ -47,6 +47,7 @@ namespace GeldAutomaat.Pages
             }
 
             BtnL2.MouseDown += RekOverview;
+            BtnL4.MouseDown += PrevPage; ;
 
             HelloText.Text = "Hello " + User.UserD.Name;
             ChoiceCard.Opacity = 0;
@@ -55,6 +56,12 @@ namespace GeldAutomaat.Pages
             MainCardAnimationApear = (Storyboard)FindResource("MainCardAnimationApear");
             Storyboard.SetTarget(MainCardAnimationApear, ChoiceCard);
             MainCardAnimationApear.Begin();
+        }
+
+        private void PrevPage(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.GoBack();
+            NavigationService.GoBack();
         }
 
         private void RekOverview(object sender, MouseButtonEventArgs e)

@@ -23,7 +23,7 @@ namespace GeldAutomaat.Pages
     /// </summary>
     public partial class UserOverview : Page
     {
-        ArrayList NewUserElements;
+        ArrayList NewUserElements = new ArrayList();
         public UserOverview()
         {
             InitializeComponent();
@@ -32,6 +32,7 @@ namespace GeldAutomaat.Pages
             AddUserButton.Tag = BtnR4;
             QuitButton.Tag = BtnL4;
             BtnR4.MouseDown += AddUser;
+            BtnL4.MouseDown += Prevpage; ;
 
             foreach (var item in ChoiceCard.Children)
             {
@@ -46,6 +47,11 @@ namespace GeldAutomaat.Pages
             }
         }
 
+        private void Prevpage(object sender, MouseButtonEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
+
         private void AddUser(object sender, MouseButtonEventArgs e)
         {
             if (NewUserElements != null)
@@ -58,6 +64,7 @@ namespace GeldAutomaat.Pages
 
             UserList.RowDefinitions.Add(new RowDefinition());
 
+
             TextBox nameTextBox = new TextBox();
             TextBox rekeningTextBox = new TextBox();
             TextBox rekeningPin = new TextBox();
@@ -68,6 +75,12 @@ namespace GeldAutomaat.Pages
             Grid.SetRow(nameTextBox, UserList.RowDefinitions.Count - 1);
             Grid.SetRow(rekeningTextBox, UserList.RowDefinitions.Count - 1);
             Grid.SetRow(rekeningPin, UserList.RowDefinitions.Count - 1);
+
+            NewUserElements.Add(nameTextBox);
+            NewUserElements.Add(rekeningTextBox);
+            NewUserElements.Add(rekeningPin);
+
+            DBData.CreateActionsTextBlock(UserList, 0, 1, NewUserElements);
 
             UserList.Children.Add(nameTextBox);
             UserList.Children.Add(rekeningTextBox);

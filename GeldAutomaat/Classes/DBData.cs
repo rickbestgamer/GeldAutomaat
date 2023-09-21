@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -42,6 +43,17 @@ namespace GeldAutomaat.Classes
             command.Parameters.Add("@RekeningNummer", MySqlDbType.String).Value = UserName;
             command.Parameters.Add("@RekeningPin", MySqlDbType.String).Value = UserPin;
             MySqlDataReader reader = command.ExecuteReader();
+
+            if (reader.HasRows) { ReadReader(reader); reader.Close(); return true; }
+
+            reader.Close();
+
+            sql = "Select * FROM `rekeningen` WHERE `RekeningNummer` = @RekeningNummer AND `RekeningPin` = @RekeningPin";
+            command = new MySqlCommand(sql, connection);
+            command.Parameters.Add("@RekeningNummer", MySqlDbType.String).Value = UserName;
+            command.Parameters.Add("@RekeningPin", MySqlDbType.String).Value = HashPin(UserPin);
+            reader = command.ExecuteReader();
+            
 
             if (reader.HasRows) { ReadReader(reader); reader.Close(); return true; }
 
@@ -100,7 +112,7 @@ namespace GeldAutomaat.Classes
                 CreateTextBlock(grid, pin, (int)reader["idRekeningen"], 3);
                 CreateTextBlock(grid, Convert.ToString(reader["Balance"]), (int)reader["idRekeningen"], 4);
                 CreateTextBlock(grid, role, (int)reader["idRekeningen"], 5);
-                CreateActionsTextBlock(grid, (int)reader["idRekeningen"], (sbyte)reader["Active"]);
+                CreateActionsTextBlock(grid, (int)reader["idRekeningen"], (sbyte)reader["Active"], null);
             }
             reader.Close();
         }
@@ -115,17 +127,21 @@ namespace GeldAutomaat.Classes
             grid.Children.Add(ReknummerTextBlock);
         }
 
-        private static void CreateActionsTextBlock(Grid grid, int id, int active)
+        public static void CreateActionsTextBlock(Grid grid, int id, int active, ArrayList newUserElements)
         {
             ArrayList arrayList = new ArrayList { id, grid };
             string state = "Inactive";
+            RoutedEventHandler stateHandler = EditState;
             if (active != 0) state = "Active";
+            string edit = "Edit";
+            RoutedEventHandler userHandler = EditUser;
+            if (id == 0) { edit = "Confirm"; userHandler = CreateUser; newUserElements.Add(grid); arrayList = newUserElements; }
 
             Grid actionGrid = new Grid { ColumnDefinitions = { new ColumnDefinition(), new ColumnDefinition() } };
-            Button editButton = new Button { Tag = arrayList, Content = "Edit"};
-            Button stateButton = new Button { Tag = id, Content = state};
-            editButton.Click += EditUser;
-            stateButton.Click += EditState;
+            Button editButton = new Button { Tag = arrayList, Content = edit };
+            Button stateButton = new Button { Tag = id, Content = state };
+            editButton.Click += userHandler;
+            stateButton.Click += stateHandler;
 
             Grid.SetColumn(editButton, 0);
             Grid.SetColumn(stateButton, 1);
@@ -136,6 +152,40 @@ namespace GeldAutomaat.Classes
             Grid.SetColumn(actionGrid, grid.ColumnDefinitions.Count - 1);
             Grid.SetRow(actionGrid, grid.RowDefinitions.Count - 1);
             grid.Children.Add(actionGrid);
+        }
+
+        private static void CreateUser(object sender, RoutedEventArgs e)
+        {
+            ArrayList userElements = (ArrayList)((Button)sender).Tag;
+            string pin = ((TextBox)(userElements)[2]).Text;
+            string sql = "INSERT INTO `rekeningen` (`Name`, `RekeningNummer`, `RekeningPin`, `RekeningPinLength`, `Balance`, `Active`, `Role`) VALUES (@Name, @RekeningNummer, @RekeningPin, @RekeningPinLength, '0', '1', '0');";
+
+            MySqlCommand command = new MySqlCommand(sql, connection);
+            command.Parameters.Add("@Name", MySqlDbType.String).Value = ((TextBox)userElements[0]).Text;
+            command.Parameters.Add("@RekeningNummer", MySqlDbType.String).Value = ((TextBox)userElements[1]).Text;
+            command.Parameters.Add("@RekeningPin", MySqlDbType.String).Value = HashPin(pin);
+            command.Parameters.Add("@RekeningPinLength", MySqlDbType.Int64).Value = pin.Length;
+
+            command.ExecuteNonQuery();
+            Grid userList = (Grid)userElements[userElements.Count - 1];
+            userList.Children.Clear();
+            userList.ColumnDefinitions.Clear();
+            userList.RowDefinitions.Clear();
+
+            userElements.Clear();
+
+            GetAllUsers(userList);
+        }
+
+        public static string HashPin(string pin)
+        {
+            using (SHA256 sha256 = SHA256.Create())
+            {
+                byte[] pinBytes = Encoding.UTF8.GetBytes(pin);
+                byte[] hashBytes = sha256.ComputeHash(pinBytes);
+
+                return BitConverter.ToString(hashBytes).Replace("-", "").ToLower();
+            }
         }
 
         private static void EditUser(object sender, RoutedEventArgs e)
@@ -203,20 +253,20 @@ namespace GeldAutomaat.Classes
                 grid.Children.Remove((UIElement)item);
             }
                 ((Button)sender).Content = "Edit";
-                ((Button)sender).Click += EditUser;
-                ((Button)sender).Click -= ConfirmUser;
+            ((Button)sender).Click += EditUser;
+            ((Button)sender).Click -= ConfirmUser;
 
         }
 
         private static void CreateTextBox(TextBlock textBlock, ArrayList textBoxes)
         {
-            if (Grid.GetColumn(textBlock) == 3) return; 
+            if (Grid.GetColumn(textBlock) == 3) return;
             if (Grid.GetColumn(textBlock) == 4)
             {
                 int index = 0;
                 ComboBox comboBox = new ComboBox();
                 comboBox.Items.Add(new TextBlock { Text = "User" });
-                comboBox.Items.Add(new TextBlock { Text = "Admin"});
+                comboBox.Items.Add(new TextBlock { Text = "Admin" });
                 if (textBlock.Text == "Admin") index = 1;
 
                 Grid.SetColumn(comboBox, Grid.GetColumn(textBlock));

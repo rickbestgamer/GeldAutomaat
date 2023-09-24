@@ -246,6 +246,64 @@
 
                     </Grid>
                 </Border>
+                <Border x:Name="DepositButton" Grid.Column="8" Grid.ColumnSpan="5" Grid.Row="11" Grid.RowSpan="2" Style="{DynamicResource RightButton}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="1" Style="{DynamicResource RightButtonArrow}">
+                            <Viewbox>
+                                <TextBlock Text=">"></TextBlock>
+                            </Viewbox>
+                        </Border>
+                        <Grid Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="15*"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="5*"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Viewbox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right">
+                                <TextBlock Text="Geld storten"/>
+                            </Viewbox>
+                        </Grid>
+
+                    </Grid>
+                </Border>
+                <Border x:Name="TransactionButton" Grid.Column="8" Grid.ColumnSpan="5" Grid.Row="15" Grid.RowSpan="2" Style="{DynamicResource RightButton}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="5*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="1" Style="{DynamicResource RightButtonArrow}">
+                            <Viewbox>
+                                <TextBlock Text=">"></TextBlock>
+                            </Viewbox>
+                        </Border>
+                        <Grid Grid.Column="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="15*"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition Height="5*"></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Viewbox Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right">
+                                <TextBlock Text="3 laatste transacties"/>
+                            </Viewbox>
+                        </Grid>
+
+                    </Grid>
+                </Border>
                 <Border x:Name="ChangePinButton" Grid.Column="8" Grid.ColumnSpan="5" Grid.Row="19" Grid.RowSpan="2" Style="{DynamicResource RightButton}">
                     <Grid>
                         <Grid.ColumnDefinitions>

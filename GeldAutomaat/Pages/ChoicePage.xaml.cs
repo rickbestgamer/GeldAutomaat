@@ -38,7 +38,21 @@ namespace GeldAutomaat.Pages
             BtnL1.MouseDown += Balance;
             BtnL4.MouseDown += PrevPage;
             BtnR1.MouseDown += Withdawl;
+            BtnR2.MouseDown += Deposit;
+            BtnR3.MouseDown += Transaction; ;
             BtnR4.MouseDown += ChangePin;
+        }
+
+        private void Transaction(object sender, MouseButtonEventArgs e)
+        {
+            TransactioinPage transactioinPage = new TransactioinPage();
+            NavigationService.Navigate(transactioinPage);
+        }
+
+        private void Deposit(object sender, MouseButtonEventArgs e)
+        {
+            DepositePage depositePage = new DepositePage();
+            NavigationService.Navigate(depositePage);
         }
 
         private void Withdawl(object sender, MouseButtonEventArgs e)

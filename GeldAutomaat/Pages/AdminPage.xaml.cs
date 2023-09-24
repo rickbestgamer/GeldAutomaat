@@ -32,6 +32,8 @@ namespace GeldAutomaat.Pages
             RekOverviewButton.Tag = BtnL2;
             QuitButton.Tag = BtnL4;
             WithdrawlButton.Tag = BtnR1;
+            DepositButton.Tag = BtnR2;
+            TransactionButton.Tag = BtnR3;
             ChangePinButton.Tag = BtnR4;
 
             foreach (var item in ChoiceCard.Children)
@@ -50,6 +52,8 @@ namespace GeldAutomaat.Pages
             BtnL2.MouseDown += RekOverview;
             BtnL4.MouseDown += PrevPage;
             BtnR1.MouseDown += Withdawl; ;
+            BtnR2.MouseDown += Deposit; ;
+            BtnR3.MouseDown += Transaction; ;
             BtnR4.MouseDown += ChangePin;
 
             HelloText.Text = "Hallo " + User.UserD.Name;
@@ -59,6 +63,18 @@ namespace GeldAutomaat.Pages
             MainCardAnimationApear = (Storyboard)FindResource("MainCardAnimationApear");
             Storyboard.SetTarget(MainCardAnimationApear, ChoiceCard);
             MainCardAnimationApear.Begin();
+        }
+
+        private void Transaction(object sender, MouseButtonEventArgs e)
+        {
+            TransactioinPage transactioinPage = new TransactioinPage();
+            NavigationService.Navigate(transactioinPage);
+        }
+
+        private void Deposit(object sender, MouseButtonEventArgs e)
+        {
+            DepositePage depositePage = new DepositePage();
+            NavigationService.Navigate(depositePage);
         }
 
         private void Withdawl(object sender, MouseButtonEventArgs e)

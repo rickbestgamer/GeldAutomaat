@@ -132,11 +132,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\DepositePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\LandingPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Pages\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\TransactioinPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -165,9 +173,15 @@
     <Compile Include="Pages\ChoicePage.xaml.cs">
       <DependentUpon>ChoicePage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\DepositePage.xaml.cs">
+      <DependentUpon>DepositePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\LandingPage.xaml.cs" />
     <Compile Include="Pages\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\TransactioinPage.xaml.cs">
+      <DependentUpon>TransactioinPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\UserOverview.xaml.cs">
       <DependentUpon>UserOverview.xaml</DependentUpon>

@@ -38,7 +38,7 @@ namespace GeldAutomaat.Classes
         {
             if (connection == null || UserName == "" || UserPin == "") return false;
 
-            string sql = "Select * FROM `rekeningen` WHERE `RekeningNummer` = @RekeningNummer AND `RekeningPin` = @RekeningPin";
+            string sql = "Select * FROM `rekeningen` WHERE `RekeningNummer` = @RekeningNummer AND `RekeningPin` = @RekeningPin AND `Active` = 1";
             MySqlCommand command = new MySqlCommand(sql, connection);
             command.Parameters.Add("@RekeningNummer", MySqlDbType.String).Value = UserName;
             command.Parameters.Add("@RekeningPin", MySqlDbType.String).Value = UserPin;
@@ -48,7 +48,7 @@ namespace GeldAutomaat.Classes
 
             reader.Close();
 
-            sql = "Select * FROM `rekeningen` WHERE `RekeningNummer` = @RekeningNummer AND `RekeningPin` = @RekeningPin";
+            sql = "Select * FROM `rekeningen` WHERE `RekeningNummer` = @RekeningNummer AND `RekeningPin` = @RekeningPin AND `Active` = 1";
             command = new MySqlCommand(sql, connection);
             command.Parameters.Add("@RekeningNummer", MySqlDbType.String).Value = UserName;
             command.Parameters.Add("@RekeningPin", MySqlDbType.String).Value = HashPin(UserPin);

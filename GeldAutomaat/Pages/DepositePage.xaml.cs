@@ -1,5 +1,6 @@
 ﻿using GeldAutomaat.Classes;
 using MySql.Data.MySqlClient;
+using Org.BouncyCastle.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -19,16 +20,14 @@ using System.Windows.Shapes;
 namespace GeldAutomaat.Pages
 {
     /// <summary>
-    /// Interaction logic for WithdrawlPage.xaml
+    /// Interaction logic for DepositePage.xaml
     /// </summary>
-    public partial class WithdrawlPage : Page
+    public partial class DepositePage : Page
     {
-        public WithdrawlPage()
+        public DepositePage()
         {
             InitializeComponent();
-
-            BtnL4.MouseDown += Prevpage;
-
+            BtnR4.MouseDown += Prevpage;
         }
 
         private void Prevpage(object sender, MouseButtonEventArgs e)
@@ -50,20 +49,19 @@ namespace GeldAutomaat.Pages
         {
             if (e.Key != Key.Return) return;
             if (TransactionAmount.Text == "") return;
-            if (Convert.ToInt64(TransactionAmount.Text) <= 0 && Convert.ToInt64(TransactionAmount.Text) > 500) return;
+            if (Convert.ToInt64(TransactionAmount.Text) <= 10 && Convert.ToInt64(TransactionAmount.Text) > 2000) return;
+
+
 
             string sql = "SELECT `Balance` FROM `rekeningen` WHERE `rekeningen`.`idRekeningen` = @idRekeningen";
             MySqlCommand command = new MySqlCommand(sql, DBData.connection);
             command.Parameters.Clear();
             command.Parameters.Add("@idRekeningen", MySqlDbType.Int64).Value = User.UserD.Id;
             MySqlDataReader reader = command.ExecuteReader();
-
-
             reader.Read();
-            if ((int)reader["Balance"] < Convert.ToInt64(TransactionAmount.Text)) { reader.Close(); return; }
             sql = "UPDATE `rekeningen` SET `Balance` = @Balance WHERE `rekeningen`.`idRekeningen` = @idRekeningen";
             command = new MySqlCommand(sql, DBData.connection);
-            command.Parameters.Add("@Balance", MySqlDbType.Int64).Value = (int)reader["Balance"] - Convert.ToInt64(TransactionAmount.Text);
+            command.Parameters.Add("@Balance", MySqlDbType.Int64).Value = (int)reader["Balance"] + Convert.ToInt64(TransactionAmount.Text)- 2;
             command.Parameters.Add("@idRekeningen", MySqlDbType.Int64).Value = User.UserD.Id;
             reader.Close();
             command.ExecuteNonQuery();
@@ -75,8 +73,6 @@ namespace GeldAutomaat.Pages
             command.Parameters.Add("@Rekeningen_idRekeningen", MySqlDbType.Int64).Value = User.UserD.Id;
 
             command.ExecuteNonQuery();
-
-
         }
     }
 }

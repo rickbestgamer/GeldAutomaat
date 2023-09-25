@@ -53,7 +53,7 @@ namespace GeldAutomaat.Classes
             command.Parameters.Add("@RekeningNummer", MySqlDbType.String).Value = UserName;
             command.Parameters.Add("@RekeningPin", MySqlDbType.String).Value = HashPin(UserPin);
             reader = command.ExecuteReader();
-            
+
 
             if (reader.HasRows) { ReadReader(reader); reader.Close(); return true; }
 
@@ -248,14 +248,25 @@ namespace GeldAutomaat.Classes
                 }
                 if (item is ComboBox)
                 {
-                    Debug.WriteLine(((ComboBox)item).Text);
+
                 }
                 grid.Children.Remove((UIElement)item);
+                string sql = "UPDATE `rekeningen` SET `Name` = 'rick1', `RekeningNummer` = '11', `RekeningPin` = '', `RekeningPinLength` = '31', `Role` = '01' WHERE `rekeningen`.`idRekeningen` = 2";
+                MySqlCommand command = new MySqlCommand(sql, connection);
+
+                //command.Parameters.Add("@STATE", MySqlDbType.Byte).Value = dbState;
+                command.Parameters.Add("@Id", MySqlDbType.Int64).Value = id;
+                command.ExecuteNonQuery();
             }
-                ((Button)sender).Content = "Edit";
+            ((Button)sender).Content = "Edit";
             ((Button)sender).Click += EditUser;
             ((Button)sender).Click -= ConfirmUser;
 
+        }
+
+        private void SetParameters(string parameter, MySqlDbType sqlDbType, MySqlCommand command)
+        {
+            command.Parameters.Add(parameter, sqlDbType);
         }
 
         private static void CreateTextBox(TextBlock textBlock, ArrayList textBoxes)

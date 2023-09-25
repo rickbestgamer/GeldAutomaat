@@ -224,8 +224,10 @@ namespace GeldAutomaat.Classes
         private static void ConfirmUser(object sender, RoutedEventArgs e)
         {
             int id = 0;
+            string sets = "";
             Grid grid = null;
             ArrayList textBoxes = new ArrayList();
+            ArrayList dbStates = new ArrayList();
 
             foreach (var item in (ArrayList)((Button)sender).Tag)
             {
@@ -238,30 +240,49 @@ namespace GeldAutomaat.Classes
             {
                 if (item is TextBox)
                 {
-                    foreach (var item1 in grid.Children)
+                    if (sets == "")
                     {
-                        if (!(item1 is TextBlock)) continue;
-                        if (!(((TextBlock)item1).Tag is int)) continue;
-                        if ((int)((TextBlock)item1).Tag != id) continue;
-                        if (Grid.GetColumn((TextBlock)item1) != Grid.GetColumn((TextBox)item) && Grid.GetRow((TextBlock)item1) != Grid.GetRow((TextBox)item)) continue;
+                        if (Grid.GetColumn((UIElement)item) == 0) sets += "`Name` = @Name";
+                        if (Grid.GetColumn((UIElement)item) == 2) sets += "`RekeningPin` = @RekeningPin";
+                        if (Grid.GetColumn((UIElement)item) == 3) sets += "`Balance` = @Balance";
                     }
+                    else
+                    {
+                        if (Grid.GetColumn((UIElement)item) == 0) sets += ", `Name` = @Name";
+                        if (Grid.GetColumn((UIElement)item) == 2) sets += ", `RekeningPin` = @RekeningPin";
+                        if (Grid.GetColumn((UIElement)item) == 3) sets += ", `Balance` = @Balance";
+                    }
+                    string text = ((TextBox)item).Text;
+                    dbStates.Add(text);
                 }
                 if (item is ComboBox)
                 {
-
+                    if (sets == "")
+                    {
+                        if (Grid.GetColumn((UIElement)item) == 4) sets += "`Role` = @Role";
+                    }
+                    else
+                    {
+                        if (Grid.GetColumn((UIElement)item) == 4) sets += ", `Role` = @Role";
+                    }
+                    dbStates.Add(((ComboBox)item).SelectedIndex);
                 }
                 grid.Children.Remove((UIElement)item);
-                string sql = "UPDATE `rekeningen` SET `Name` = 'rick1', `RekeningNummer` = '11', `RekeningPin` = '', `RekeningPinLength` = '31', `Role` = '01' WHERE `rekeningen`.`idRekeningen` = 2";
-                MySqlCommand command = new MySqlCommand(sql, connection);
-
-                //command.Parameters.Add("@STATE", MySqlDbType.Byte).Value = dbState;
-                command.Parameters.Add("@Id", MySqlDbType.Int64).Value = id;
-                command.ExecuteNonQuery();
             }
+            string sql = "UPDATE `rekeningen` SET " + sets + " WHERE `rekeningen`.`idRekeningen` = 2";
+            MySqlCommand command = new MySqlCommand(sql, connection);
+
+            command.Parameters.Add("@Name", MySqlDbType.VarChar).Value = dbStates[0];
+            command.Parameters.Add("@RekeningPin", MySqlDbType.VarChar).Value = dbStates[1];
+            command.Parameters.Add("@Balance", MySqlDbType.Int16).Value = dbStates[2];
+            command.Parameters.Add("@Role", MySqlDbType.Int16).Value = dbStates[3];
+            command.ExecuteNonQuery();
+
             ((Button)sender).Content = "Edit";
             ((Button)sender).Click += EditUser;
             ((Button)sender).Click -= ConfirmUser;
-
+            grid.Children.Clear();
+            GetAllUsers(grid);
         }
 
         private void SetParameters(string parameter, MySqlDbType sqlDbType, MySqlCommand command)
@@ -271,7 +292,7 @@ namespace GeldAutomaat.Classes
 
         private static void CreateTextBox(TextBlock textBlock, ArrayList textBoxes)
         {
-            if (Grid.GetColumn(textBlock) == 3) return;
+            if (Grid.GetColumn(textBlock) == 1) return;
             if (Grid.GetColumn(textBlock) == 4)
             {
                 int index = 0;

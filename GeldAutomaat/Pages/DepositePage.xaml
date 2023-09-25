@@ -124,10 +124,6 @@
                 </Grid.RowDefinitions>
 
                 <Border Grid.Column="2" Grid.ColumnSpan="11" Grid.Row="2" BorderThickness="0,0,0,5" BorderBrush="White"></Border>
-
-                <Viewbox>
-                    <TextBlock Text="Neem uw geld op" FontFamily="MADE Tommy Soft" FontWeight="Bold"></TextBlock>
-                </Viewbox>
                 <Grid Grid.Row="6" Grid.RowSpan="3" Grid.Column="6" Grid.ColumnSpan="3">
                     <Grid.RowDefinitions>
                         <RowDefinition></RowDefinition>

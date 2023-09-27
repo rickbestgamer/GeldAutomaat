@@ -139,7 +139,7 @@ namespace GeldAutomaat.Classes
 
             Grid actionGrid = new Grid { ColumnDefinitions = { new ColumnDefinition(), new ColumnDefinition() } };
             Button editButton = new Button { Tag = arrayList, Content = edit };
-            Button stateButton = new Button { Tag = id, Content = state };
+            Button stateButton = new Button { Tag = arrayList, Content = state };
             editButton.Click += userHandler;
             stateButton.Click += stateHandler;
 
@@ -282,12 +282,9 @@ namespace GeldAutomaat.Classes
             ((Button)sender).Click += EditUser;
             ((Button)sender).Click -= ConfirmUser;
             grid.Children.Clear();
+            grid.RowDefinitions.Clear();
+            grid.ColumnDefinitions.Clear();
             GetAllUsers(grid);
-        }
-
-        private void SetParameters(string parameter, MySqlDbType sqlDbType, MySqlCommand command)
-        {
-            command.Parameters.Add(parameter, sqlDbType);
         }
 
         private static void CreateTextBox(TextBlock textBlock, ArrayList textBoxes)
@@ -319,17 +316,27 @@ namespace GeldAutomaat.Classes
 
         private static void EditState(object sender, RoutedEventArgs e)
         {
-            int id = (int)((Button)sender).Tag;
+            int id = 0;
+            Grid grid = null;
             byte dbState = 0;
-            string state = "Inactive";
             string sql = "UPDATE `rekeningen` SET `Active` = @STATE WHERE `rekeningen`.`idRekeningen` = @Id";
             MySqlCommand command = new MySqlCommand(sql, connection);
 
-            if ((string)((Button)sender).Content == "Inactive") { state = "Active"; dbState = 1; }
+            foreach (var item in (ArrayList)((Button)sender).Tag)
+            {
+                if (item is int) id = (int)item;
+                if (item is Grid) grid = (Grid)item;
+            }
+
+            if ((string)((Button)sender).Content == "Inactive") { dbState = 1; }
             command.Parameters.Add("@STATE", MySqlDbType.Byte).Value = dbState;
             command.Parameters.Add("@Id", MySqlDbType.Int64).Value = id;
             command.ExecuteNonQuery();
-            ((Button)sender).Content = state;
+
+            grid.Children.Clear();
+            grid.RowDefinitions.Clear();
+            grid.ColumnDefinitions.Clear();
+            GetAllUsers(grid);
         }
 
         private static void CreateTextBlock(Grid grid, string text, int id, int row)

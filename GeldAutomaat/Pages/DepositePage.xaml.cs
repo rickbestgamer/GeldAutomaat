@@ -49,7 +49,7 @@ namespace GeldAutomaat.Pages
         {
             if (e.Key != Key.Return) return;
             if (TransactionAmount.Text == "") return;
-            if (Convert.ToInt64(TransactionAmount.Text) <= 10 && Convert.ToInt64(TransactionAmount.Text) > 2000) return;
+            if (Convert.ToInt64(TransactionAmount.Text) <= 10 || Convert.ToInt64(TransactionAmount.Text) > 2000) return;
 
 
 
@@ -65,14 +65,14 @@ namespace GeldAutomaat.Pages
             command.Parameters.Add("@idRekeningen", MySqlDbType.Int64).Value = User.UserD.Id;
             reader.Close();
             command.ExecuteNonQuery();
-            NavigationService.GoBack();
 
-            sql = "INSERT INTO `transacties` (`Type`, `Amount`, `TimeStamp`, `Rekeningen_idRekeningen`) VALUES ('0', @Amount, current_timestamp(), @Rekeningen_idRekeningen);";
+            sql = "INSERT INTO `transacties` (`Type`, `Amount`, `TimeStamp`, `Rekeningen_idRekeningen`) VALUES ('1', @Amount, current_timestamp(), @Rekeningen_idRekeningen);";
             command = new MySqlCommand(sql, DBData.connection);
             command.Parameters.Add("@Amount", MySqlDbType.Int64).Value = Convert.ToInt64(TransactionAmount.Text) - 2;
             command.Parameters.Add("@Rekeningen_idRekeningen", MySqlDbType.Int64).Value = User.UserD.Id;
 
             command.ExecuteNonQuery();
+            NavigationService.GoBack();
         }
     }
 }

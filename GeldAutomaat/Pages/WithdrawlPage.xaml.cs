@@ -48,6 +48,15 @@ namespace GeldAutomaat.Pages
 
         private void Page_KeyDown(object sender, KeyEventArgs e)
         {
+            string test = "SELECT `transacties`.`TimeStamp` FROM `transacties` WHERE `transacties`.`TimeStamp` >= DATE_SUB(NOW(), INTERVAL 24 HOUR) AND `transacties`.`Type` = 0 AND `transacties`.`Rekeningen_idRekeningen` = @Id";
+            MySqlCommand cmd = new MySqlCommand(test, DBData.connection);
+            cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = User.UserD.Id;
+            MySqlDataReader dr = cmd.ExecuteReader();
+
+            if (dr.FieldCount > 2) { dr.Close(); return; }
+            dr.Close();
+
+
             if (e.Key != Key.Return) return;
             if (TransactionAmount.Text == "") return;
             if (Convert.ToInt64(TransactionAmount.Text) <= 0 && Convert.ToInt64(TransactionAmount.Text) > 500) return;
@@ -71,7 +80,7 @@ namespace GeldAutomaat.Pages
 
             sql = "INSERT INTO `transacties` (`Type`, `Amount`, `TimeStamp`, `Rekeningen_idRekeningen`) VALUES ('0', @Amount, current_timestamp(), @Rekeningen_idRekeningen);";
             command = new MySqlCommand(sql, DBData.connection);
-            command.Parameters.Add("@Amount", MySqlDbType.Int64).Value = Convert.ToInt64(TransactionAmount.Text) - 2;
+            command.Parameters.Add("@Amount", MySqlDbType.Int64).Value = 0 - Convert.ToInt64(TransactionAmount.Text);
             command.Parameters.Add("@Rekeningen_idRekeningen", MySqlDbType.Int64).Value = User.UserD.Id;
 
             command.ExecuteNonQuery();

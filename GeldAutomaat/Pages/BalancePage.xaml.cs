@@ -11,6 +11,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -22,9 +23,13 @@ namespace GeldAutomaat.Pages
     /// </summary>
     public partial class BalancePage : Page
     {
+        Storyboard MainCardAnimationDisapear;
+        Storyboard MainCardAnimationApear;
         public BalancePage()
         {
             InitializeComponent();
+            MainCardAnimationDisapear = (Storyboard)FindResource("MainCardAnimationDisapear");
+            MainCardAnimationApear = (Storyboard)FindResource("MainCardAnimationApear");
             string sql = "SELECT `Balance` FROM `rekeningen` WHERE `idRekeningen` = @idRekeningen";
             MySqlCommand command = new MySqlCommand(sql, DBData.connection);
             command.Parameters.Add("@idRekeningen", MySqlDbType.Int32).Value = User.UserD.Id;
@@ -40,10 +45,16 @@ namespace GeldAutomaat.Pages
 
             BtnL4.MouseDown += Prevpage;
 
+            MainCardAnimationApear = (Storyboard)FindResource("MainCardAnimationApear");
+            Storyboard.SetTarget(MainCardAnimationApear, ChoiceCard);
+            MainCardAnimationApear.Begin();
         }
 
-        private void Prevpage(object sender, MouseButtonEventArgs e)
+        private async void Prevpage(object sender, MouseButtonEventArgs e)
         {
+            Storyboard.SetTarget(MainCardAnimationDisapear, ChoiceCard);
+            MainCardAnimationDisapear.Begin();
+            await Task.Delay(500);
             NavigationService.GoBack();
         }
 

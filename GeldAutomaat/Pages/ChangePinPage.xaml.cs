@@ -11,6 +11,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -22,9 +23,26 @@ namespace GeldAutomaat.Pages
     /// </summary>
     public partial class ChangePinPage : Page
     {
+        Storyboard MainCardAnimationDisapear;
+        Storyboard MainCardAnimationApear;
         public ChangePinPage()
         {
             InitializeComponent();
+            MainCardAnimationDisapear = (Storyboard)FindResource("MainCardAnimationDisapear");
+            MainCardAnimationApear = (Storyboard)FindResource("MainCardAnimationApear");
+
+            Storyboard.SetTarget(MainCardAnimationApear, ChoiceCard);
+            MainCardAnimationApear.Begin();
+            BtnL4.MouseDown += Prevpage;
+
+        }
+
+        private async void Prevpage(object sender, MouseButtonEventArgs e)
+        {
+            Storyboard.SetTarget(MainCardAnimationDisapear, ChoiceCard);
+            MainCardAnimationDisapear.Begin();
+            await Task.Delay(500);
+            NavigationService.GoBack();
         }
 
         private void Ellipse_MouseEnter(object sender, MouseEventArgs e)
@@ -37,7 +55,7 @@ namespace GeldAutomaat.Pages
             ((Ellipse)sender).Fill = Brushes.Black;
         }
 
-        private void Page_KeyDown(object sender, KeyEventArgs e)
+        private async void Page_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key != Key.Return || NewPin.Text != PinRepeat.Text) return;
 
@@ -49,8 +67,17 @@ namespace GeldAutomaat.Pages
             command.Parameters.Add("@idRekeningen", MySqlDbType.Int64).Value = User.UserD.Id;
 
             command.ExecuteNonQuery();
+
+            Storyboard.SetTarget(MainCardAnimationDisapear, ChoiceCard);
+            MainCardAnimationDisapear.Begin();
+            await Task.Delay(500);
             NavigationService.GoBack();
 
+        }
+
+        private void CheckNum(object sender, KeyEventArgs e)
+        {
+            DBData.CheckNum(e);
         }
     }
 }

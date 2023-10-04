@@ -11,6 +11,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -22,9 +23,13 @@ namespace GeldAutomaat.Pages
     /// </summary>
     public partial class TransactioinPage : Page
     {
+        Storyboard MainCardAnimationDisapear;
+        Storyboard MainCardAnimationApear;
         public TransactioinPage()
         {
             InitializeComponent();
+            MainCardAnimationDisapear = (Storyboard)FindResource("MainCardAnimationDisapear");
+            MainCardAnimationApear = (Storyboard)FindResource("MainCardAnimationApear");
             BtnL4.MouseDown += Prevpage;
             BtnR4.MouseDown += Prevpage;
 
@@ -59,10 +64,15 @@ namespace GeldAutomaat.Pages
             }
             reader.Close();
 
+            Storyboard.SetTarget(MainCardAnimationApear, ChoiceCard);
+            MainCardAnimationApear.Begin();
         }
 
-        private void Prevpage(object sender, MouseButtonEventArgs e)
+        private async void Prevpage(object sender, MouseButtonEventArgs e)
         {
+            Storyboard.SetTarget(MainCardAnimationDisapear, ChoiceCard);
+            MainCardAnimationDisapear.Begin();
+            await Task.Delay(500);
             NavigationService.GoBack();
         }
 

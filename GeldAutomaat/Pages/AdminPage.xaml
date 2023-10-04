@@ -7,7 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="AdminPage"
-      Style="{StaticResource MainWindow}">
+      Style="{StaticResource MainWindow}" Loaded="Page_Loaded">
 
     <Page.Resources>
         <Storyboard x:Key="MainCardAnimationDisapear">

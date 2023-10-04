@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using GeldAutomaat.Pages;
 using MySql.Data.MySqlClient;
@@ -36,8 +37,7 @@ namespace GeldAutomaat.Classes
 
         public static bool CheckUserLogin(string UserName, string UserPin)
         {
-            if (connection == null || UserName == "" || UserPin == "") return false;
-
+            if (connection.State == ConnectionState.Closed || UserName == "" || UserPin == "") return false;
             string sql = "Select * FROM `rekeningen` WHERE `RekeningNummer` = @RekeningNummer AND `RekeningPin` = @RekeningPin AND `Active` = 1";
             MySqlCommand command = new MySqlCommand(sql, connection);
             command.Parameters.Add("@RekeningNummer", MySqlDbType.String).Value = UserName;
@@ -308,10 +308,20 @@ namespace GeldAutomaat.Classes
             TextBox textBox = new TextBox();
             textBox.Text = textBlock.Text;
 
+            if (Grid.GetColumn(textBlock) != 0)
+            {
+                textBlock.KeyDown += _CheckNum;
+            }
+
             Grid.SetColumn(textBox, Grid.GetColumn(textBlock));
             Grid.SetRow(textBox, Grid.GetRow(textBlock));
 
             textBoxes.Add(textBox);
+        }
+
+        private static void _CheckNum(object sender, KeyEventArgs e)
+        {
+            CheckNum(e);
         }
 
         private static void EditState(object sender, RoutedEventArgs e)
@@ -346,6 +356,14 @@ namespace GeldAutomaat.Classes
             Grid.SetRow(ReknummerTextBlock, grid.RowDefinitions.Count - 1);
             grid.Children.Add(ReknummerTextBlock);
         }
+
+        public static void CheckNum(KeyEventArgs e)
+        {
+            if (e.Key != Key.D1 && e.Key != Key.D2 && e.Key != Key.D3 && e.Key != Key.D4 && e.Key != Key.D5 && e.Key != Key.D6 && e.Key != Key.D7 && e.Key != Key.D8 && e.Key != Key.D9 && e.Key != Key.D0 && e.Key != Key.NumPad0 && e.Key != Key.NumPad1 && e.Key != Key.NumPad2 && e.Key != Key.NumPad3 && e.Key != Key.NumPad4 && e.Key != Key.NumPad5 && e.Key != Key.NumPad6 && e.Key != Key.NumPad7 && e.Key != Key.NumPad8 && e.Key != Key.NumPad9)
+            {
+                e.Handled = true;
+            }
+        }
     }
 
     public class User
@@ -359,14 +377,5 @@ namespace GeldAutomaat.Classes
         public int Id { get { return id; } set { id = value; } }
         public string Name { get { return name; } set { name = value; } }
         public int Role { get { return role; } set { role = value; } }
-    }
-
-    public class Transactions
-    {
-        public static List<Transactions> transactions = new List<Transactions>();
-        public Transactions() { }
-
-        public int Index { get; set; }
-        public int Amount { get; set; }
     }
 }

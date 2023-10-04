@@ -164,7 +164,7 @@
                             <RowDefinition></RowDefinition>
                             <RowDefinition></RowDefinition>
                         </Grid.RowDefinitions>
-                        <TextBox x:Name="TxBlPin" Grid.Row="1"></TextBox>
+                        <PasswordBox x:Name="TxBlPin" Grid.Row="1" KeyDown="CheckNum"></PasswordBox>
                     </Grid>
                 </Grid>
 

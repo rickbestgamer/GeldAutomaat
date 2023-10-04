@@ -39,42 +39,71 @@ namespace GeldAutomaat.Pages
             BtnL4.MouseDown += PrevPage;
             BtnR1.MouseDown += Withdawl;
             BtnR2.MouseDown += Deposit;
-            BtnR3.MouseDown += Transaction; ;
+            BtnR3.MouseDown += Transaction;
             BtnR4.MouseDown += ChangePin;
         }
 
-        private void Transaction(object sender, MouseButtonEventArgs e)
+        private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            NavigationService.Navigating += BackAnimation;
+        }
+
+        private void BackAnimation(object sender, NavigatingCancelEventArgs e)
+        {
+            Storyboard.SetTarget(MainCardAnimationApear, ChoiceCard);
+            MainCardAnimationApear.Begin();
+        }
+
+        private async void Transaction(object sender, MouseButtonEventArgs e)
+        {
+            Storyboard.SetTarget(MainCardAnimationDisapear, ChoiceCard);
+            MainCardAnimationDisapear.Begin();
+            await Task.Delay(500);
             TransactioinPage transactioinPage = new TransactioinPage();
             NavigationService.Navigate(transactioinPage);
         }
 
-        private void Deposit(object sender, MouseButtonEventArgs e)
+        private async void Deposit(object sender, MouseButtonEventArgs e)
         {
+            Storyboard.SetTarget(MainCardAnimationDisapear, ChoiceCard);
+            MainCardAnimationDisapear.Begin();
+            await Task.Delay(500);
             DepositePage depositePage = new DepositePage();
             NavigationService.Navigate(depositePage);
         }
 
-        private void Withdawl(object sender, MouseButtonEventArgs e)
+        private async void Withdawl(object sender, MouseButtonEventArgs e)
         {
+            Storyboard.SetTarget(MainCardAnimationDisapear, ChoiceCard);
+            MainCardAnimationDisapear.Begin();
+            await Task.Delay(500);
             WithdrawlPage withdrawlPage = new WithdrawlPage();
             NavigationService.Navigate(withdrawlPage);
         }
 
-        private void ChangePin(object sender, MouseButtonEventArgs e)
+        private async void ChangePin(object sender, MouseButtonEventArgs e)
         {
+            Storyboard.SetTarget(MainCardAnimationDisapear, ChoiceCard);
+            MainCardAnimationDisapear.Begin();
+            await Task.Delay(500);
             ChangePinPage changePinPage = new ChangePinPage();
             NavigationService.Navigate(changePinPage);
         }
 
-        private void PrevPage(object sender, MouseButtonEventArgs e)
+        private async void PrevPage(object sender, MouseButtonEventArgs e)
         {
+            Storyboard.SetTarget(MainCardAnimationDisapear, ChoiceCard);
+            MainCardAnimationDisapear.Begin();
+            await Task.Delay(500);
             NavigationService.GoBack();
             NavigationService.GoBack();
         }
 
-        private void Balance(object sender, MouseButtonEventArgs e)
+        private async void Balance(object sender, MouseButtonEventArgs e)
         {
+            Storyboard.SetTarget(MainCardAnimationDisapear, ChoiceCard);
+            MainCardAnimationDisapear.Begin();
+            await Task.Delay(500);
             BalancePage balancePage = new BalancePage();
             NavigationService.Navigate(balancePage);
         }

@@ -12,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -23,16 +24,24 @@ namespace GeldAutomaat.Pages
     /// </summary>
     public partial class WithdrawlPage : Page
     {
+        Storyboard MainCardAnimationDisapear;
+        Storyboard MainCardAnimationApear;
         public WithdrawlPage()
         {
             InitializeComponent();
+            MainCardAnimationDisapear = (Storyboard)FindResource("MainCardAnimationDisapear");
+            MainCardAnimationApear = (Storyboard)FindResource("MainCardAnimationApear");
 
             BtnL4.MouseDown += Prevpage;
-
+            Storyboard.SetTarget(MainCardAnimationApear, ChoiceCard);
+            MainCardAnimationApear.Begin();
         }
 
-        private void Prevpage(object sender, MouseButtonEventArgs e)
+        private async void Prevpage(object sender, MouseButtonEventArgs e)
         {
+            Storyboard.SetTarget(MainCardAnimationDisapear, ChoiceCard);
+            MainCardAnimationDisapear.Begin();
+            await Task.Delay(500);
             NavigationService.GoBack();
         }
 
@@ -46,8 +55,12 @@ namespace GeldAutomaat.Pages
             ((Ellipse)sender).Fill = Brushes.Black;
         }
 
-        private void Page_KeyDown(object sender, KeyEventArgs e)
+        private async void Page_KeyDown(object sender, KeyEventArgs e)
         {
+            if (e.Key != Key.Return) return;
+            if (TransactionAmount.Text == "") return;
+            if (Convert.ToInt64(TransactionAmount.Text) <= 0 || Convert.ToInt64(TransactionAmount.Text) > 500) return;
+
             string test = "SELECT `transacties`.`TimeStamp` FROM `transacties` WHERE `transacties`.`TimeStamp` >= DATE_SUB(NOW(), INTERVAL 24 HOUR) AND `transacties`.`Type` = 0 AND `transacties`.`Rekeningen_idRekeningen` = @Id";
             MySqlCommand cmd = new MySqlCommand(test, DBData.connection);
             cmd.Parameters.Add("@Id", MySqlDbType.Int32).Value = User.UserD.Id;
@@ -76,6 +89,10 @@ namespace GeldAutomaat.Pages
             command.Parameters.Add("@idRekeningen", MySqlDbType.Int64).Value = User.UserD.Id;
             reader.Close();
             command.ExecuteNonQuery();
+
+            Storyboard.SetTarget(MainCardAnimationDisapear, ChoiceCard);
+            MainCardAnimationDisapear.Begin();
+            await Task.Delay(500);
             NavigationService.GoBack();
 
             sql = "INSERT INTO `transacties` (`Type`, `Amount`, `TimeStamp`, `Rekeningen_idRekeningen`) VALUES ('0', @Amount, current_timestamp(), @Rekeningen_idRekeningen);";
@@ -86,6 +103,12 @@ namespace GeldAutomaat.Pages
             command.ExecuteNonQuery();
 
 
+        }
+
+        private void CheckNum(object sender, KeyEventArgs e)
+        {
+            DBData.CheckNum(e);
+            Page_KeyDown(sender, e);
         }
     }
 }

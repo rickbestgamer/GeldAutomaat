@@ -22,23 +22,27 @@ namespace GeldAutomaat.Pages
     /// </summary>
     public partial class LandingPage : Page
     {
+                Storyboard MainCardAnimationDisapear;
+                Storyboard MainCardAnimationApear;
         public LandingPage()
         {
             InitializeComponent();
-            MainCard.Opacity = 1;
+            MainCardAnimationDisapear = (Storyboard)FindResource("MainCardAnimationDisapear");
+            MainCardAnimationApear = (Storyboard)FindResource("MainCardAnimationApear");
+            MainCard.Opacity = 0;
             MainCard.Visibility = Visibility.Visible;
             WelcomeCard.Opacity = 0;
             WelcomeCard.Visibility = Visibility.Visible;
             LoadLogo.Opacity = 1;
             LoadLogo.Visibility = Visibility.Visible;
+            Storyboard.SetTarget(MainCardAnimationApear, MainCard);
+            MainCardAnimationApear.Begin();
         }
 
         private async void Ellipse_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (MainCard.Opacity == 1)
             {
-                Storyboard MainCardAnimationDisapear = (Storyboard)FindResource("MainCardAnimationDisapear");
-                Storyboard MainCardAnimationApear = (Storyboard)FindResource("MainCardAnimationApear");
 
                 Storyboard.SetTarget(MainCardAnimationDisapear, MainCard);
                 MainCardAnimationDisapear.Begin();

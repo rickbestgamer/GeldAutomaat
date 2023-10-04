@@ -61,7 +61,7 @@ namespace GeldAutomaat.Pages
 
         private async void Login(object sender, RoutedEventArgs e)
         {
-            if (!DBData.CheckUserLogin(TxBlRek.Text, TxBlPin.Text)) return;
+            if (!DBData.CheckUserLogin(TxBlRek.Text, TxBlPin.Password)) return;
             Storyboard.SetTarget(MainCardAnimationDisapear, LoginGrid);
             MainCardAnimationDisapear.Begin();
             Storyboard.SetTarget(MainCardAnimationDisapear, LeftLoginButton);
@@ -70,8 +70,8 @@ namespace GeldAutomaat.Pages
             MainCardAnimationDisapear.Begin();
             await Task.Delay(500);
             ChoicePage choicePage = new ChoicePage();
-            if (User.UserD.Role == 0) { NavigationService.Navigate(choicePage); return; }
             AdminPage adminPage = new AdminPage();
+            if (User.UserD.Role == 0) { NavigationService.Navigate(choicePage); return; }
             if (User.UserD.Role == 1) { NavigationService.Navigate(adminPage); return; }
             
         }
@@ -79,6 +79,12 @@ namespace GeldAutomaat.Pages
         private void CheckEnter(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter) Login(sender, e);
+        }
+
+        private void CheckNum(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) Login(sender, e);
+            DBData.CheckNum(e);
         }
     }
 }
